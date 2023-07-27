@@ -1,4 +1,5 @@
-const UserRow = ({user}) => {       
+const UserRow = ({user}) => {    
+
     return (
         <li className="table__body-item table-item">            
             <span className="table-item__text">{user.name}</span>        

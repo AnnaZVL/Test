@@ -9,7 +9,6 @@ const FormBody = ({submit}) => {
     const [errorEmail, setErrorEmail] = useState('');
     const [formValid, setFormValid] = useState(false);
 
-    console.log('object', formValid);
     function inputNameChange(e) {              
             setName(e.target.value);
             setErrorName('')        
@@ -28,13 +27,13 @@ const FormBody = ({submit}) => {
     function errorInputName (e) {
         if (e.target.value === '') {
             setErrorName('Поле обязательно для заполнения');
-        }
+        };
     };
 
     function errorInputSurname (e) {
         if (e.target.value === '') {
             setErrorSurname('Поле обязательно для заполнения');
-        }
+        };
     };
 
     function errorInputEmail (e) {
@@ -49,8 +48,7 @@ const FormBody = ({submit}) => {
     };
    
     useEffect(() => {
-        if (errorName || errorSurname || errorEmail) {
-            console.log('err', setFormValid());
+        if (errorName || errorSurname || errorEmail) {            
             setFormValid(false)
         } else {
             setFormValid(true)}
@@ -61,7 +59,7 @@ const FormBody = ({submit}) => {
             <label className="form__label" htmlFor="name">
                 Введите Ваше имя
                 <input 
-                    className="form__input input-name" 
+                    className="form__input input-name"                    
                     value={name}                
                     type="text" 
                     name="name"  

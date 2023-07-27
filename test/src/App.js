@@ -7,20 +7,33 @@ import UserRow from './components/UserRow';
 let users = [];
 function App() {
   const [user, setUser] = useState();
+  const [formValid, setFormValid] = useState(false);
+
   let newUser = {};  
-  
+  const id = (Math.random()*100000).toFixed(0)
+ 
   function handlerSubmit(e) {
     e.preventDefault();
-    newUser =  {
-      name: e.target[0].value,
-      surname: e.target[1].value,
-      email: e.target[2].value
+   
+    for (const item of e.target) {
+      if (item.value !== '') {
+        setFormValid(true);
+      };
     };
 
-    addUser(newUser);
-    
-    getUser()
-  };
+    if (formValid) {
+       newUser =  {
+          id,
+          name: e.target[0].value,
+          surname: e.target[1].value,
+          email: e.target[2].value
+        };
+
+        addUser(newUser);
+        
+        getUser();
+    };      
+};
 
   //Добавление данных в Локальное хранилище
   function addUser(user) {     
@@ -59,8 +72,8 @@ function App() {
                     </li>
                 </ul>
                 <ul className="table__body table-list">
-                      {users.map((user, index) => (
-                          <UserRow user={user} key={index}></UserRow>
+                      {users.map((user) => (
+                          <UserRow user={user} key={user.id} valid={formValid}></UserRow>
                       ))}
                 </ul>
             </div>
